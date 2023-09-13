@@ -10,5 +10,7 @@ namespace SuperVet.Data
 
         }
         public DbSet<Pets> Pets { get; set; }
+        public DbSet<Species> Species { get; set; }
+        public DbSet<Breeds> Breeds { get; set; }
     }
 }
