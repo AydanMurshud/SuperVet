@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Pets>;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div style="width:100%; display:flex;gap:10px;">
+    @foreach(var pet in Model)
+    {
+        <div>
+            <img width="200" src="@pet.Picture"/>
+            <h1>@pet.Type</h1>
+        </div>
+
+    }
+
+</div>
