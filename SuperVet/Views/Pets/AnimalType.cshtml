@@ -1,0 +1,20 @@
+﻿@model Pets 
+<div>
+	@if (Model == null)
+	{	
+		@Html.Partial("NotFound");
+	}
+	else
+	{
+	<h1>@Model.AnimalType</h1>
+		
+		@foreach(var species in Model.Species)
+		{
+			<a class="nav-link text-dark" asp-area="" asp-controller="Species" asp-action="Index">
+				<img width="300" height="200" src="@species.Image"/>
+				<h2>@species.Name</h2>
+				<p>@species.Description</p>
+			</a>
+		}
+	}
+</div>

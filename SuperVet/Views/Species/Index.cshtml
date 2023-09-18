@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Species>
+
+
+<div>
+	
+	@foreach(var species in Model)
+	{
+		<h1>@species.Name</h1>
+		@foreach(var breed in species.Breeds)
+		{
+			<a class="nav-link text-dark" asp-area="" asp-controller="Species" asp-action="Breeds" asp-route-id="@breed.Id">
+				<img width="100" height="75" src="@breed.Image"/>
+				<h4>@breed.Name</h4>
+			</a>
+		}
+	}
+
+</div>

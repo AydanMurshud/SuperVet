@@ -3,15 +3,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SuperVet.Models
 {
-    public class Pets
-    {
-        [Key]
-        public int Id { get; set; }
+	public class Pets
+	{
+		[Key] public int Id { get; set; }
 
-        public string AnimalType { get; set; }
-        [ForeignKey("SpeciesId")]
+		public string AnimalType { get; set; }
+		public string Description { get; set; }
+		public string Image { get; set; }	
 
-        public int SpeciesId { get; set; }
-        public List<Species> Species { get; set; }
-    }
+		[ForeignKey("SpeciesId")]
+		public int SpeciesId { get; set; }
+		public List<Species> Species { get; set; }
+
+	}
 }
