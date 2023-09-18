@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Pets>;
+
+@{
+	ViewData["Title"] = "Pets Page";
+}
+<div class="text-center">
+	
+	@foreach(var pet in Model)
+	{
+		<a class="nav-link text-dark" asp-area="" asp-controller="Pets" asp-action="AnimalType" asp-route-id="@pet.Id">
+			<img width="300" height="200" src="@pet.Image"/>
+			<h2>@pet.AnimalType</h2>
+			<h5>@pet.Species.Count()</h5>
+			<p>@pet.Description</p>
+		</a>
+	}
+</div>
