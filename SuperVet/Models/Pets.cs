@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SuperVet.Models
 {
@@ -10,9 +9,6 @@ namespace SuperVet.Models
 		public string AnimalType { get; set; }
 		public string Description { get; set; }
 		public string Image { get; set; }	
-
-		[ForeignKey("SpeciesId")]
-		public int SpeciesId { get; set; }
 		public List<Species> Species { get; set; }
 
 	}

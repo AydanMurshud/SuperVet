@@ -1,17 +1,23 @@
-﻿@model IEnumerable<Pets>;
+﻿@model IEnumerable<Pets>
 
-@{
-	ViewData["Title"] = "Pets Page";
+
+@if (Model == null)
+{
+	<h1>Not Found</h1>
 }
-<div class="text-center">
+
+else
+{
 	
-	@foreach(var pet in Model)
-	{
-		<a class="nav-link text-dark" asp-area="" asp-controller="Pets" asp-action="AnimalType" asp-route-id="@pet.Id">
-			<img width="300" height="200" src="@pet.Image"/>
-			<h2>@pet.AnimalType</h2>
-			<h5>@pet.Species.Count()</h5>
-			<p>@pet.Description</p>
-		</a>
-	}
-</div>
+		<div>
+			@foreach(var pet in Model)
+			{
+				<a class="nav-link text-dark" asp-area="" asp-controller="Species" asp-action="Index">
+					<img width="300" height="200" src="@pet.Image" />
+					<h2>@pet.AnimalType</h2>
+					<small>Has @pet.Species.Count() species</small>
+					<p>@pet.Description</p>
+				</a>
+			}
+		</div>
+}

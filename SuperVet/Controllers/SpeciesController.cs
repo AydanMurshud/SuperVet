@@ -7,19 +7,21 @@ namespace SuperVet.Controllers
 	public class SpeciesController : Controller
 	{
 		private readonly ApplicationDbContext _context;
+
 		public SpeciesController(ApplicationDbContext context)
 		{
 			_context = context;
 		}
 		public IActionResult Index()
 		{
-			var species = _context.Species.Include(s=>s.Breeds);
+			var species = _context.Species.Include(b => b.Breeds).ToList();
 			return View(species);
 		}
+
 		public IActionResult Breeds(int Id)
 		{
-			var breed = _context.Breeds.FirstOrDefault(b => b.Id == Id);
-			return View(breed);
+			var breeds = _context.Species.Include(b => b.Breeds).FirstOrDefault(s=>s.Id==Id);
+			return View(breeds);
 		}
 	}
 }

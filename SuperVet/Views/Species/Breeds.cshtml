@@ -1,20 +1,22 @@
-﻿@model Breeds
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<div>   
+﻿@model Species
+<div>
 
-    @if (Model == null)
-    {
-       @Html.Partial("NotFound")
-    }
-    else
-    {
-        <img width="300" height="200" src="@Model.Image"/>
-        <h1>@Model.Name</h1
-        <p>@Model.Description</p>
-        
-    }
+	@if (Model == null || Model.Breeds==null)
+	{
+		<h2>Not Found</h2>
+	}
+
+	else
+	{
+		
+		<h2>@Model.Name</h2>
+		@foreach(var breed in Model.Breeds)
+		{
+			<a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Breed" asp-route-id="@breed.Id">
+				<img width="300" height="200" src="@breed.Image" />
+				<h2>@breed.Name</h2>
+				<p>@breed.Description</p>
+			</a>
+		}
+	}
 </div>
