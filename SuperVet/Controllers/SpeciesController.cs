@@ -1,27 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SuperVet.Data;
+using SuperVet.Interfaces;
 
 namespace SuperVet.Controllers
 {
 	public class SpeciesController : Controller
 	{
-		private readonly ApplicationDbContext _context;
-
-		public SpeciesController(ApplicationDbContext context)
+		private readonly ISpeciesServices _speciesServices;
+		public SpeciesController(ISpeciesServices speciesServices)
 		{
-			_context = context;
+			_speciesServices = speciesServices;
 		}
-		public IActionResult Index()
+		public async Task<IActionResult> Index(int PetsId)
 		{
-			var species = _context.Species.Include(b => b.Breeds).ToList();
+			var species = await _speciesServices.GetSpeciesByPetId(PetsId);
 			return View(species);
 		}
 
-		public IActionResult Breeds(int Id)
-		{
-			var breeds = _context.Species.Include(b => b.Breeds).FirstOrDefault(s=>s.Id==Id);
-			return View(breeds);
-		}
+		//public async Task<IActionResult> Breeds(int Id)
+		//{
+		//	var breeds = await _speciesServices.GetSpeciesById(Id);
+		//	return View(breeds);
+		//}
 	}
 }

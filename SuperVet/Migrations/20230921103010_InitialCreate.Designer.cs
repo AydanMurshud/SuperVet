@@ -11,8 +11,8 @@ using SuperVet.Data;
 namespace SuperVet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230918135757_m2")]
-    partial class m2
+    [Migration("20230921103010_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,9 +73,6 @@ namespace SuperVet.Migrations
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SpeciesId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

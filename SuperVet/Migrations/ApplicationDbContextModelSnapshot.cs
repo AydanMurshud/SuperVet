@@ -71,9 +71,6 @@ namespace SuperVet.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SpeciesId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Pets");

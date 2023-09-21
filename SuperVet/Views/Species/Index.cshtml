@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<Species>
 
-
-
 <div>
 	@foreach(var species in Model)
 	{
-		<a class="nav-link text-dark" asp-area="" asp-controller="Species" asp-action="Breeds" asp-route-id="@species.Id">
+		<a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Index" asp-route-SpeciesId="@species.Id">
 			<img width="300" height="200" src="@species.Image" />
 			<h2>@species.Name</h2>
+
 			@if (species.Breeds != null)
 			{
 				<small>Has @species.Breeds.Count() breeds</small>
+			}
+			else
+			{
+				<small>Has 0 breeds</small>
 			}
 			<p>@species.Description</p>
 		</a>

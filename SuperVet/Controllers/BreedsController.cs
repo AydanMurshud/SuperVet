@@ -1,21 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SuperVet.Data;
+using SuperVet.Interfaces;
 using SuperVet.Models;
+using SuperVet.Services;
 
 namespace SuperVet.Controllers
 {
 	public class BreedsController : Controller
 	{
-		private readonly ApplicationDbContext _context;
-		public BreedsController(ApplicationDbContext context)
+		private readonly IBreedsServices _breedsServices;
+		public BreedsController(IBreedsServices breedsServices)
 		{
-			_context = context;
+			_breedsServices = breedsServices;
 		}
-		public IActionResult Breed(int Id)
-		{	
-			var breed = _context.Breeds.FirstOrDefault(b => b.Id == Id);
-			
-			return View(breed);
+		public async Task<IActionResult> Index(int SpeciesId)
+		{
+			var breeds = await _breedsServices.GetBreedBySpeciesId(SpeciesId);
+			return View(breeds);
 		}
 	}
 }

@@ -1,10 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using SuperVet.Data;
+using SuperVet.Interfaces;
+using SuperVet.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IPetsServices,PetsService>();
+builder.Services.AddScoped<ISpeciesServices, SpeciesService>();
+builder.Services.AddScoped<IBreedsServices, BreedsService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
