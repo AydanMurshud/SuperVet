@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Breeds>
+<div>
+
+	@if (Model == null)
+	{
+		<h2>Not Found</h2>
+	}
+
+	else
+	{
+		@foreach(var breed in Model)
+		{
+			<h2>@breed.Name</h2>
+			<a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Breed" asp-route-id="@breed.Id">
+				<img width="300" height="200" src="@breed.Image" />
+				<h2>@breed.Name</h2>
+				<p>@breed.Description</p>
+			</a>
+		}
+
+	}
+</div>

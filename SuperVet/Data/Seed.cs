@@ -11,6 +11,7 @@ namespace SuperVet.Data
 				var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
 
 				context.Database.EnsureCreated();
+
 				if (!context.Pets.Any())
 				{
 					context.Pets.AddRange(new List<Pets>()
@@ -18,59 +19,110 @@ namespace SuperVet.Data
 						new Pets()
 						{
 							AnimalType="Mammal",
-
-							Description = "Mammals are distinguished from other vertebrate animals by several unique features. " +
-							"All mammals produce and secrete milk from mammary glands to feed their offspring. " +
-							"They also have hair on their bodies, although some mammalian groups have less hair than others.",
-							Image="https://upload.wikimedia.org/wikipedia/commons/0/0c/Cow_female_black_white.jpg",
-							Species=new List<Species>()
+							Description="adsddnajdniajsndinasd",
+							Image = "https://upload.wikimedia.org/wikipedia/commons/0/0c/Cow_female_black_white.jpg",
+							Species = new List<Species>()
 							{
-								 new Species()
+								new Species()
 								{
 									Name="Canis",
-									Description="A dog is a domestic mammal of the family Canidae and the order Carnivora. Its scientific name is Canis lupus familiaris.",
-									Image="https://www.cesarsway.com/wp-content/uploads/2015/06/dog-breeds.png",
-									Breeds = new List<Breeds>
+									Description = "KSDAISD",
+									Image="https://www.akc.org/wp-content/uploads/2018/05/Three-Australian-Shepherd-puppies-sitting-in-a-field.jpg",
+									Breeds = new List<Breeds>()
 									{
 										new Breeds()
 										{
-										   Name = "German Shepherd",
-										   Description="Strong and loyal" +
-										   "Generally considered dogkind's finest all-purpose worker, " +
-										   "the German Shepherd Dog is a large, agile, " +
-										   "muscular dog of noble character and high intelligence. " +
-										   "Loyal, confident, courageous, and steady, the German Shepherd is truly a dog lover's delight.",
-										   Image="https://www.akc.org/wp-content/uploads/2017/11/German-Shepherd-on-White-00.jpg"
+											Name="German Shepherd",
+											Description="Sdsdsdasfafasd",
+											Image = "https://www.akc.org/wp-content/uploads/2017/11/German-Shepherd-on-White-00.jpg"
 										},
 										new Breeds()
 										{
-											Name  ="Doberman Pinscher",
-											Description = "Strong and loyal" +
-											"The Doberman pinscher has a long head and a sleek, muscular body. " +
-											"The ears are often cropped to stand erect, and the tail is usually docked short. " +
-											"The Doberman pinscher has a short, sleek and shiny coat that is black, dark red, blue or fawn with rust-colored markings on the face, body and tail.",
-											Image="https://dogtime.com/wp-content/uploads/sites/12/2011/01/GettyImages-474330006-e1691273994614.jpg"
-										},
-										new Breeds()
-										{
-											Name="Chihuahua",
-											Description="Small, but evil" +
-											"The Chihuahua is a balanced, graceful dog of terrier-like demeanor, " +
-											"weighing no more than 6 pounds. The rounded \"apple\" head is a breed hallmark. " +
-											"The erect ears and full, luminous eyes are acutely expressive. Coats come in many colors and patterns, and can be long or short.",
-											Image="https://www.akc.org/wp-content/uploads/2017/11/Chihuahua-standing-in-three-quarter-view.jpg"
-
+											Name="Pitbull",
+											Description="Sdsdsdasfafasd",
+											Image = "https://media.istockphoto.com/id/513392620/photo/big-dog.jpg?s=612x612&w=0&k=20&c=YgiuJ9_3LGYwHB40IVMnjwv8p-4RCFLwcD-yJAOYAGE="
 										}
-
+									}
+								},
+								new Species()
+								{
+									Name = "Feline",
+									Description = "Dsadadamisdams,d';",
+									Image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRnsczNMv69XUuip7z_1_KaTI564ZSRCGnzm_S_KCLbfwDHNzmoKCKtCPXusIaRvA7ZJ8&usqp=CAU",
+									Breeds = new List<Breeds>()
+									{
+										new Breeds()
+										{
+											Name="American Bobtail Cat Breed",
+											Description="Sdsdsdasfafasd",
+											Image = "https://www.dailypaws.com/thmb/BlBOz9SUy9dr9Oc4mAXRD3dK0y8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/orange-american-bobtail-kitten-808979798-2000-64652e937de14c0e850ea9e900893d84.jpg"
+										},
+										new Breeds()
+										{
+											Name="Bengal",
+											Description="Sdsdsdasfafasd",
+											Image = "https://visitseaquest.com/wp-content/uploads/2022/11/unnamed-4.jpg"
+										}
 									}
 								}
 							}
 
+						},
+						new Pets()
+						{
+							AnimalType = "Reptiles",
+							Description = "DJSHDAJHSJDAI",
+							Image = "https://i.natgeofe.com/k/c02b35d2-bfd7-4ed9-aad4-8e25627cd481/komodo-dragon-head-on_16x9.jpg?w=1200",
+							Species = new List<Species>()
+							{
+								new Species()
+								{
+									Name="lizards",
+									Description="sadasasgea",
+									Image = "https://i0.wp.com/post.healthline.com/wp-content/uploads/2021/06/lizard-iguana-1296x728-header.jpg?w=1155&h=15",
+									Breeds = new List<Breeds>()
+									{
+										new Breeds()
+										{
+											Name="Jacsons Chameleon",
+											Description="Sdsdsdasfafasd",
+											Image = "https://assets.petco.com/petco/image/upload/f_auto,q_auto/jacksons-chameleon-care-sheet-hero"
+										},
+										new Breeds()
+										{
+											Name="Tokay Gecko",
+											Description="Sdsdsdasfafasd",
+											Image = "https://www.australiangeographic.com.au/wp-content/uploads/2021/11/EBN3D4-scaled.jpg"
+										}
+									}
+								},
+								new Species()
+								{
+									Name = "Snakes",
+									Description="DASDAsdsads",
+									Image = "https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL707430_tjxppv.jpg",
+									Breeds = new List<Breeds>()
+									{
+										new Breeds()
+										{
+											Name="King Cobra",
+											Description="Sdsdsdasfafasd",
+											Image = "https://i0.wp.com/virginiazoo.org/wp-content/uploads/2020/12/GettyImages-1281306013.jpg?fit=2119%2C1415&ssl=1"
+										},
+										new Breeds()
+										{
+											Name="Rattle snake",
+											Description="Sdsdsdasfafasd",
+											Image = "https://cloudfront-us-east-2.images.arcpublishing.com/reuters/EPLX6XS5WZNG7P25EQQQHAR3ZY.jpg"
+										}
+									}
+								}
+							}
 						}
-
 					});
 					context.SaveChanges();
 				}
+
 			}
 		}
 	}
