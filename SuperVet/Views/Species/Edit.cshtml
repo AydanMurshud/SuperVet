@@ -1,0 +1,40 @@
+﻿
+@model SuperVet.ViewModels.SpeciesViewModel
+
+
+<form method="post" asp-action="Edit">
+	<div class="form-group">
+		<label asp-for="Name">Animal Group</label>
+		<input asp-for="Name" class="form-control" placeholder="Name" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Description">Description</label>
+		<input asp-for="Description" class="form-control" placeholder="Description" />
+		<span asp-validation-for="Description" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Image">Image URL</label>
+		<input asp-for="Image" class="form-control" placeholder="Image URL" />
+		<span asp-validation-for="Image" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label>Animal Group</label>
+		
+		<select asp-for="PetsId" class="form-control">
+			@foreach (var opt in Model.Pets)
+			{
+				if(opt.Id== Model.PetsId)
+				{
+					<option selected value="@opt.Id">@opt.AnimalType</option>
+				}
+				else
+				{
+					<option value="@opt.Id">@opt.AnimalType</option>
+				}
+			}
+		</select>
+		<span asp-validation-for="PetsId" class="text-danger"></span>
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
