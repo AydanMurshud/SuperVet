@@ -1,22 +1,15 @@
 ﻿@model IEnumerable<Breeds>
+
 <div>
-
-	@if (Model == null)
+	<a class="btn btn-primary" asp-controller="Breeds" asp-action="Create">Add Breed +</a>
+	@foreach (var breed in Model)
 	{
-		<h2>Not Found</h2>
-	}
-
-	else
-	{
-		@foreach(var breed in Model)
-		{
+		<a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Details" asp-route-SpeciesId="@breed.Id">
+			<img width="300" height="200" src="@breed.Image" />
 			<h2>@breed.Name</h2>
-			<a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Breed" asp-route-id="@breed.Id">
-				<img width="300" height="200" src="@breed.Image" />
-				<h2>@breed.Name</h2>
-				<p>@breed.Description</p>
-			</a>
-		}
-
+			<p>@breed.Description</p>
+			<a class="btn btn-primary" asp-controller="Breeds" asp-action="Edit" asp-route-Id="@breed.Id">Edit</a>
+			<a class="btn btn-danger" asp-controller="Breeds" asp-action="Delete" asp-route-Id="@breed.Id">Delete</a>
+		</a>
 	}
 </div>

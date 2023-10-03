@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Species>
 
 <div>
+	<a class="btn btn-primary" asp-controller="Species" asp-action="Create">Add Species +</a>
 	@foreach(var species in Model)
 	{
 		<a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Index" asp-route-SpeciesId="@species.Id">
@@ -16,6 +17,8 @@
 				<small>Has 0 breeds</small>
 			}
 			<p>@species.Description</p>
+			<a class="btn btn-primary" asp-controller="Species" asp-action="Edit" asp-route-Id="@species.Id">Edit</a>
+			<a class="btn btn-danger" asp-controller="Species" asp-action="Delete" asp-route-Id="@species.Id">Delete</a>
 		</a>
 	}
 </div>

@@ -1,0 +1,68 @@
+﻿@model SuperVet.ViewModels.BreedViewModel
+<form method="post" asp-action="Create">
+	<div class="form-group">
+		<label asp-for="Name">Breed Name</label>
+		<input asp-for="Name" class="form-control" placeholder="Breed Name" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Description">Description</label>
+		<input asp-for="Description" class="form-control" placeholder="Description" />
+		<span asp-validation-for="Description" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Image">Image URL</label>
+		<input asp-for="Image" class="form-control" placeholder="Image URL" />
+		<span asp-validation-for="Image" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label>Animal Group</label>
+		<select onchange="changeAnimalGroup()" id="petsId" name="PetsId" asp-for="PetsId" class="form-control" >
+			<option disabled selected value="Select Animal Group">Select Animal Group</option>
+			@foreach (var opt in Model.Pets)
+			{
+				<option value="@opt.Id">@opt.AnimalType</option>
+			}
+		</select>
+		<span asp-validation-for="PetsId" class="text-danger"></span>
+	</div>
+	<div id="species" class="form-group">
+		<label>Species</label>
+		<select id="speciesId" name="SpeciesId" asp-for="SpeciesId" class="form-control"></select>
+		<span asp-validation-for="SpeciesId" class="text-danger"></span>
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<script>
+	const species = document.getElementById("species")
+	const speciesId = document.getElementById("speciesId");
+	species.style.display = "none";
+	const petsId = document.getElementById("petsId");
+	petsId.addEventListener("change", () => {
+		const selectedPetId = petsId.value;
+		const speciesOptions = Array.from(@Json.Serialize(Model.Species));
+		const filtered = speciesOptions.filter(s=>s.petsId==selectedPetId)
+		
+		const defaultOption = document.createElement("option");
+		defaultOption.value ="Select Species";
+		defaultOption.innerHTML = "Select Spceies";
+		defaultOption.disabled = true;
+		defaultOption.selected = true;
+		speciesId.appendChild(defaultOption);
+		filtered.forEach(s => {
+			console.log(s.id)
+			const option = document.createElement("option");
+			option.value = s.id;
+			option.innerHTML = s.name
+			speciesId.appendChild(option);
+		})
+		checkAnimals();
+	})
+	const checkAnimals=()=>{
+		species.style.display="block"
+	}
+	const changeAnimalGroup = () => {
+		Array.from(speciesId.children).map(c => speciesId.remove(c))
+
+	}
+</script>

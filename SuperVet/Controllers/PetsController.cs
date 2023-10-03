@@ -5,7 +5,7 @@ using SuperVet.ViewModels;
 
 namespace SuperVet.Controllers
 {
-	public class PetsController : Controller
+    public class PetsController : Controller
 	{
 		private readonly IPetsServices _petServices;
 
@@ -26,7 +26,7 @@ namespace SuperVet.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Create(CreatePetsViewModel petVM)
+		public IActionResult Create(PetsViewModel petVM)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -47,7 +47,7 @@ namespace SuperVet.Controllers
 		{
 			var pet = await _petServices.GetPetById(Id);
 			if (pet == null) return View("Error");
-			var petVM = new EditPetsViewModel
+			var petVM = new PetsViewModel
 			{
 				AnimalType = pet.AnimalType,
 				Description = pet.Description,
@@ -57,11 +57,11 @@ namespace SuperVet.Controllers
 			return View(petVM);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Edit(int Id, EditPetsViewModel petVM)
+		public IActionResult Edit(int Id, PetsViewModel petVM)
 		{
 			if (!ModelState.IsValid)
 			{
-				ModelState.AddModelError("", "Failed to edit Pet");
+				 ModelState.AddModelError("", "Failed to edit Pet");
 				return View("Edit", petVM);
 			}
 			var pet = new Pets
@@ -73,7 +73,7 @@ namespace SuperVet.Controllers
 			};
 			_petServices.Update(pet);
 
-			return RedirectToAction("Index");
+			return  RedirectToAction("Index");
 		}
 		public async Task<IActionResult> Delete(int Id)
 		{

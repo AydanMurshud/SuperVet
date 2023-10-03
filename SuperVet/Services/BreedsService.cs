@@ -20,7 +20,7 @@ namespace SuperVet.Services
 		}
 		public async Task<Breeds> GetBreedById(int Id)
 		{
-			return await _context.Breeds.FirstOrDefaultAsync(b => b.Id == Id);
+			return await _context.Breeds.FirstAsync(b => b.Id == Id);
 		}
 		public async Task<IEnumerable<Breeds>> GetBreedBySpeciesId(int SpeciesId)
 		{
