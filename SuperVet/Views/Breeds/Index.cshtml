@@ -1,15 +1,26 @@
 ﻿@model IEnumerable<Breeds>
 
-<div>
-	<a class="btn btn-primary" asp-controller="Breeds" asp-action="Create">Add Breed +</a>
-	@foreach (var breed in Model)
+
+<div class="container d-flex flex-wrap pt-3 gap-3 justify-content-center align-items-center">
+	@if (Model == null || Model.Count()<1)
 	{
-		<a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Details" asp-route-SpeciesId="@breed.Id">
-			<img width="300" height="200" src="@breed.Image" />
-			<h2>@breed.Name</h2>
-			<p>@breed.Description</p>
-			<a class="btn btn-primary" asp-controller="Breeds" asp-action="Edit" asp-route-Id="@breed.Id">Edit</a>
-			<a class="btn btn-danger" asp-controller="Breeds" asp-action="Delete" asp-route-Id="@breed.Id">Delete</a>
-		</a>
+		<h1>There are no Breeds for this Species</h1>
 	}
+	else
+	{
+		@foreach (var breed in Model)
+		{
+			<div class="card d-flex justify-content-between align-items-center p-2" style="width:300px; height:350px">
+				<a class="nav-link text-dark text-center" asp-area="" asp-controller="Breeds" asp-action="Details" asp-route-SpeciesId="@breed.Id">
+					<img class="card-img" src="@breed.Image" />
+					<h2>@breed.Name</h2>
+					<div class="d-flex justify-content-center gap-2 w-100">
+						<a class="btn btn-primary" asp-controller="Breeds" asp-action="Edit" asp-route-Id="@breed.Id">Edit</a>
+						<a class="btn btn-danger" asp-controller="Breeds" asp-action="Delete" asp-route-Id="@breed.Id">Delete</a>
+					</div>
+				</a>
+			</div>
+		}
+	}
+	
 </div>

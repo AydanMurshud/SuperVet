@@ -23,15 +23,26 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Pets" asp-action="index">Pets</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Pets" asp-action="index">Animals</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav d-flex gap-2">
+                        <li>
+                            <a class="btn btn-primary" asp-controller="Pets" asp-action="Create">Add Animal Group +</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary" asp-controller="Species" asp-action="Create">Add Species +</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary" asp-controller="Breeds" asp-action="Create">Add Breed +</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="w-100" >
+        <main role="main" class="p-3">
             @RenderBody()
         </main>
     </div>
