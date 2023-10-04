@@ -1,26 +1,27 @@
 ﻿@model Species
 
-<h2>Are you sure you want to delete @Model.Name</h2>
-<form method="post" asp-action="Delete">
-	<div class="form-group">
-		<label asp-for="Name">Animal Group</label>
-		<input asp-for="Name" class="form-control" placeholder="Animal Group" />
-		<span asp-validation-for="Name" class="text-danger"></span>
+<div class="container d-flex flex-column pt-3 gap-3 justify-content-center align-items-center">
+	<h2>Are you sure you want to delete @Model.Name</h2>
+	<div class="card d-flex justify-content-between align-items-center p-2" style="width:300px; height:350px">
+		<a class="nav-link text-dark text-center" asp-area="" asp-controller="Breeds" asp-action="Index" asp-route-SpeciesId="@Model.Id">
+			<img class="card-img" src="@Model.Image" />
+			<h2>@Model.Name</h2>
+
+			@if (Model.Breeds != null)
+			{
+				<small>Has @Model.Breeds.Count() breeds</small>
+			}
+			else
+			{
+				<small>Has 0 breeds</small>
+			}
+		</a>
+		<div class="d-flex justify-content-center gap-2 w-100">
+			<form asp-action="DeleteSpecies" method="post">
+				<input type="hidden" asp-for="Id" />
+				<input type="submit" value="Yes" class="btn btn-danger" />
+			</form>
+			<a class="btn btn-primary" asp-controller="Species" asp-action="Index" asp-route-PetsId="@Model.PetsId">No</a>
+		</div>
 	</div>
-	<div class="form-group">
-		<label asp-for="Description">Description</label>
-		<input asp-for="Description" class="form-control" placeholder="Description" />
-		<span asp-validation-for="Description" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="Image">Image URL</label>
-		<input asp-for="Image" class="form-control" placeholder="Image URL" />
-		<span asp-validation-for="Image" class="text-danger"></span>
-	</div>
-</form>
-<div class="form-group">
-	<form asp-action="DeleteSpecies" method="post">
-		<input type="hidden" asp-for="Id" />
-		<input type="submit" value="Yes" class="btn btn-danger" />
-	</form>
 </div>
