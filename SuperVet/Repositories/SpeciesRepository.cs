@@ -5,25 +5,24 @@ using SuperVet.Models;
 
 namespace SuperVet.Services
 {
-	public class SpeciesService : ISpeciesServices
+	public class SpeciesRepository : ISpeciesRepository
 	{
 		private readonly ApplicationDbContext _context;
-
-		public SpeciesService(ApplicationDbContext context)
+		public SpeciesRepository(ApplicationDbContext context)
 		{
 			_context = context;
 		}
-		public async Task<IEnumerable<Species>> GetAllSpecies()
+		public async Task<IEnumerable<Species>> GetAll()
 		{
 			return await _context.Species.ToListAsync();
 		}
-		public async Task<Species> GetSpeciesById(int Id)
+		public async Task<Species> GetById(int Id)
 		{
 			return await _context.Species.Include(s => s.Breeds).FirstOrDefaultAsync(s => s.Id == Id);
 		}
-		public async Task<IEnumerable<Species>> GetSpeciesByPetId(int PetsId)
+		public async Task<IEnumerable<Species>> GetSpeciesByPetsId(int PetsId)
 		{
-			return await _context.Species.Include(s => s.Breeds).Where(s => s.PetsId == PetsId).ToListAsync();
+			return await _context.Species.Include(s => s.Breeds).Where(s => s.PetId == PetsId).ToListAsync();
 		}
 		public bool Add(Species species)
 		{

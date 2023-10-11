@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Pets>
+﻿@model IEnumerable<Pet>
 
 
 <div class=" container d-flex flex-wrap pt-3 gap-3 justify-content-center align-items-center">
@@ -13,7 +13,7 @@
 			<div class="card d-flex justify-content-between align-items-center p-2" style="width:300px; height:300px">
 				<a  class="nav-link text-dark text-center" asp-area="" asp-controller="Species" asp-action="Index" asp-route-PetsId="@pet.Id">
 					<img class="card-img" src="@pet.Image" />
-					<h4>@pet.AnimalType</h4>
+					<h4>@pet.Name</h4>
 					<small>Has @pet.Species.Count() species</small>
 				</a>
 				<div class="d-flex justify-content-center gap-2 w-100">

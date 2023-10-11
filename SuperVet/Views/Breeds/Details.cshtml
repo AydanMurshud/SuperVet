@@ -1,1 +1,12 @@
-﻿
+﻿@model Breed
+
+
+<div class="d-flex flex-column justify-content-between align-items-center p-2" >
+	<img class="img-fluid" src="@Model.Image" />
+		<div class="d-flex justify-content-center gap-2 w-100">
+			<a class="btn btn-primary" asp-controller="Breeds" asp-action="Edit" asp-route-Id="@Model.Id">Edit</a>
+			<a class="btn btn-danger" asp-controller="Breeds" asp-action="Delete" asp-route-Id="@Model.Id">Delete</a>
+		</div>
+	<h2>@Model.Name</h2>
+	<h5>@Model.Description</h5>
+</div>

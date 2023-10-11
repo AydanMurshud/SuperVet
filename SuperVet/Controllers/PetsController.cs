@@ -1,55 +1,50 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SuperVet.Interfaces;
 using SuperVet.Models;
-using SuperVet.ViewModels;
 
 namespace SuperVet.Controllers
 {
-    public class PetsController : Controller
+	public class PetsController : Controller
 	{
-		private readonly IPetsServices _petServices;
+		private readonly IPetsRepository _petServices;
 
-		public PetsController(IPetsServices petsServices)
+		public PetsController(IPetsRepository petsServices)
 		{
-
 			_petServices = petsServices;
-
 		}
 		public async Task<IActionResult> Index()
 		{
-			var pets = await _petServices.GetAllPets();
+			var pets = await _petServices.GetAll();
 			return View(pets);
 		}
 		public IActionResult Create()
 		{
 			return View();
 		}
-
 		[HttpPost]
-		public IActionResult Create(PetsViewModel petVM)
+		public IActionResult Create(Pet petVM)
 		{
 			if (!ModelState.IsValid)
 			{
 				return View(petVM);
 			}
-			var pet = new Pets
+			var pet = new Pet
 			{
-				AnimalType = petVM.AnimalType,
+				Name = petVM.Name,
 
 				Description = petVM.Description,
 				Image = petVM.Image,
 			};
 			_petServices.Add(pet);
 			return RedirectToAction("Index");
-
 		}
 		public async Task<IActionResult> Edit(int Id)
 		{
-			var pet = await _petServices.GetPetById(Id);
+			var pet = await _petServices.GetById(Id);
 			if (pet == null) return View("Error");
-			var petVM = new PetsViewModel
+			var petVM = new Pet
 			{
-				AnimalType = pet.AnimalType,
+				Name = pet.Name,
 				Description = pet.Description,
 				Image = pet.Image,
 
@@ -57,34 +52,33 @@ namespace SuperVet.Controllers
 			return View(petVM);
 		}
 		[HttpPost]
-		public IActionResult Edit(int Id, PetsViewModel petVM)
+		public IActionResult Edit(int Id, Pet petVM)
 		{
 			if (!ModelState.IsValid)
 			{
-				 ModelState.AddModelError("", "Failed to edit Pet");
+				ModelState.AddModelError("", "Failed to edit Pet");
 				return View("Edit", petVM);
 			}
-			var pet = new Pets
+			var pet = new Pet
 			{
 				Id = Id,
-				AnimalType = petVM.AnimalType,
+				Name = petVM.Name,
 				Description = petVM.Description,
 				Image = petVM.Image,
 			};
 			_petServices.Update(pet);
-
-			return  RedirectToAction("Index");
+			return RedirectToAction("Index");
 		}
 		public async Task<IActionResult> Delete(int Id)
 		{
-			var pet = await _petServices.GetPetById(Id);
-			if(pet == null) return View("Error");
+			var pet = await _petServices.GetById(Id);
+			if (pet == null) return View("Error");
 			return View(pet);
 		}
-		[HttpPost,ActionName("DeletePet")]
+		[HttpPost, ActionName("DeletePet")]
 		public async Task<IActionResult> DeletePet(int Id)
 		{
-			var pet = await _petServices.GetPetById(Id);
+			var pet = await _petServices.GetById(Id);
 			if (pet == null) return View("Error");
 			_petServices.Delete(pet);
 			return RedirectToAction("Index");

@@ -19,14 +19,14 @@
 	</div>
 	<div class="form-group">
 		<label >Animal Group</label>
-		<select asp-for="PetsId" class="form-control">
+		<select asp-for="PetId" class="form-control">
 			<option disabled selected value="Select Animal Group">Select Animal Type</option>
 			@foreach(var opt in Model.Pets)
 			{
-				<option value="@opt.Id">@opt.AnimalType</option>
+				<option value="@opt.Id">@opt.Name</option>
 			}
 		</select>
-		<span asp-validation-for="PetsId" class="text-danger"></span>
+		<span asp-validation-for="PetId" class="text-danger"></span>
 	</div>
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
