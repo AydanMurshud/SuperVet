@@ -1,11 +1,11 @@
-﻿@model Pets
+﻿@model Pet
 
 
 <form method="post" asp-action="Create">
 	<div class="form-group">
-		<label asp-for="AnimalType">Animal Group</label>
-		<input asp-for="AnimalType" class="form-control" placeholder="Animal Group"/>
-		<span asp-validation-for="AnimalType" class="text-danger"></span>
+		<label asp-for="Name">Animal Group</label>
+		<input asp-for="Name" class="form-control" placeholder="Animal Group"/>
+		<span asp-validation-for="Name" class="text-danger"></span>
 	</div>
 	<div class="form-group">
 		<label asp-for="Description">Description</label>

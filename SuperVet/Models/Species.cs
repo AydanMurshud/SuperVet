@@ -1,19 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace SuperVet.Models
+﻿namespace SuperVet.Models
 {
-	public class Species
+	public class Species : AnimalBase
 	{
-		[Key] public int Id { get; set; }
-		public string? Name { get; set; }
-
-		public string? Description { get; set; }
-
-		public string? Image { get; set; }
-		public List<Breeds>? Breeds { get; set; }
-		public int PetsId { get; set; }
-
+		public List<Breed>? Breeds { get; set; }
+		public int PetId { get; set; }
 	}
-
 }

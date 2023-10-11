@@ -11,18 +11,18 @@ namespace SuperVet.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Pets",
+                name: "Pet",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AnimalType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pets", x => x.Id);
+                    table.PrimaryKey("PK_Pet", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -34,21 +34,21 @@ namespace SuperVet.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PetsId = table.Column<int>(type: "int", nullable: false)
+                    PetId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Species", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Species_Pets_PetsId",
-                        column: x => x.PetsId,
-                        principalTable: "Pets",
+                        name: "FK_Species_Pet_PetId",
+                        column: x => x.PetId,
+                        principalTable: "Pet",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Breeds",
+                name: "Breed",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -61,9 +61,9 @@ namespace SuperVet.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Breeds", x => x.Id);
+                    table.PrimaryKey("PK_Breed", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Breeds_Species_SpeciesId",
+                        name: "FK_Breed_Species_SpeciesId",
                         column: x => x.SpeciesId,
                         principalTable: "Species",
                         principalColumn: "Id",
@@ -71,27 +71,27 @@ namespace SuperVet.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Breeds_SpeciesId",
-                table: "Breeds",
+                name: "IX_Breed_SpeciesId",
+                table: "Breed",
                 column: "SpeciesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Species_PetsId",
+                name: "IX_Species_PetId",
                 table: "Species",
-                column: "PetsId");
+                column: "PetId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Breeds");
+                name: "Breed");
 
             migrationBuilder.DropTable(
                 name: "Species");
 
             migrationBuilder.DropTable(
-                name: "Pets");
+                name: "Pet");
         }
     }
 }

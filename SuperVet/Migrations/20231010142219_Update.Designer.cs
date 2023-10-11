@@ -11,8 +11,8 @@ using SuperVet.Data;
 namespace SuperVet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230921103010_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231010142219_Update")]
+    partial class Update
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace SuperVet.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SuperVet.Models.Breeds", b =>
+            modelBuilder.Entity("SuperVet.Models.Breed", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace SuperVet.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PetsId")
+                    b.Property<int>("PetId")
                         .HasColumnType("int");
 
                     b.Property<int>("SpeciesId")
@@ -51,20 +51,16 @@ namespace SuperVet.Migrations
 
                     b.HasIndex("SpeciesId");
 
-                    b.ToTable("Breeds");
+                    b.ToTable("Breed");
                 });
 
-            modelBuilder.Entity("SuperVet.Models.Pets", b =>
+            modelBuilder.Entity("SuperVet.Models.Pet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AnimalType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -74,9 +70,13 @@ namespace SuperVet.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Pets");
+                    b.ToTable("Pet");
                 });
 
             modelBuilder.Entity("SuperVet.Models.Species", b =>
@@ -96,17 +96,17 @@ namespace SuperVet.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PetsId")
+                    b.Property<int>("PetId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PetsId");
+                    b.HasIndex("PetId");
 
                     b.ToTable("Species");
                 });
 
-            modelBuilder.Entity("SuperVet.Models.Breeds", b =>
+            modelBuilder.Entity("SuperVet.Models.Breed", b =>
                 {
                     b.HasOne("SuperVet.Models.Species", null)
                         .WithMany("Breeds")
@@ -117,14 +117,14 @@ namespace SuperVet.Migrations
 
             modelBuilder.Entity("SuperVet.Models.Species", b =>
                 {
-                    b.HasOne("SuperVet.Models.Pets", null)
+                    b.HasOne("SuperVet.Models.Pet", null)
                         .WithMany("Species")
-                        .HasForeignKey("PetsId")
+                        .HasForeignKey("PetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SuperVet.Models.Pets", b =>
+            modelBuilder.Entity("SuperVet.Models.Pet", b =>
                 {
                     b.Navigation("Species");
                 });
