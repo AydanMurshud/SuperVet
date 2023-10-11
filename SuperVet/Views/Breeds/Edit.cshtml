@@ -42,7 +42,6 @@
 		const selectedPetId = PetId.value;
 		const speciesOptions = Array.from(@Json.Serialize(Model.Species));
 		const filtered = speciesOptions.filter(s => s.petId == selectedPetId);
-		console.log(speciesOptions)
 			
 		if (filtered.length < 1) {
 			const noData = document.createElement('option');
