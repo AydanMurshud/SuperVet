@@ -46,7 +46,7 @@
 		Array.from(speciesId.children).map(c => speciesId.remove(c));
 		const selectedPetId = PetId.value;
 		const speciesOptions = Array.from(@Json.Serialize(Model.Species));
-		const filtered = speciesOptions.filter(s => s.PetId == selectedPetId);
+		const filtered = speciesOptions.filter(s => s.petId == selectedPetId);
 			
 		if (filtered.length < 1) {
 			const noData = document.createElement('option');
